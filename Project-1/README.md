@@ -13,27 +13,45 @@ Note: The standard interpretation of the logical symbols - "∨", "∧", "→", 
 
 1. Provide the truth tables for each of the following propositional logic formulas. State whether each is a tautology, a contradiction, or contingent:
   ```
-  (a) (¬A→B)∨((A∧¬C)→B) 
+  (a) (¬A→B)∨((A∧¬C)→B)
+tautology
   (b) (A→B)∧(A→¬B)
-  (c) (A→(B∨C))∨(C→¬A) 
+invalid (satisfiable)
+  (c) (A→(B∨C))∨(C→¬A)
+
   (d) ((A→B)∧C)∨(A∧D) 
   ```
 	
 2. A _literal_ is an atomic formula or the negation of an atomic formula. We say a formula is in _conjunctive normal form_ (CNF) if it is the conjunction of the disjunction of literals. Find propositional logic formulas in CNF equivalent to each of the following:
   ```
-  (a) (A→B)→C
-  (b) (A→(B∨C))∨(C→¬A)
-  (c) (¬A∧¬B∧C)∨(¬A∧¬C)∨(B∧C)∨A 
+(a) (A→B)→C
+(-AVB)→C     
+-((AVB) ∧ -C)
+
+(b) (A→(B∨C))∨(C→¬A)
+(-AV(B∨C))  ∨  (-C ∧¬A)
+
+(c) (¬A∧¬B∧C)∨(¬A∧¬C)∨(B∧C)∨A
+
   ```
   
 3. Let V be the vocabulary of first-order logic consisting of a binary relation P and a unary relation F. Interpret P(x,y) as “x is a parent of y” and F(x) as “x is female.” Where possible define the following formulas in this vocabulary; where not possible, explain why: 
   
   ```
-  (a)  B(x,y) that says that x is a brother of y  
-  (b)  A(x,y) that says that x is an aunt of y  
-  (c)  C(x,y) that says that x and y are cousins   
-  (d)  O(x) that says that x is an only child  
-  (e)  T(x) that says that x has exactly two brothers 
+(a)  B(x,y) that says that x is a brother of y  
+B(x,y) :=  ¬F(x) ∧ y≠x  & ∃z( zPx ∧ zPy ∧ z≠y ∧ z≠x   )
+
+(b)  A(x,y) that says that x is an aunt of y   
+A(x,y) := F(x) ∧ y≠x & ∃z( zPy & B(z,x) ....... )
+
+(c)  C(x,y) that says that x and y are cousins  
+C(x,y) :=   ∃z,w, k (  zPx  &  wPy & kPz  & kPw  & x≠y & z≠w & ....8 other disequalities )
+
+(d)  O(x) that says that x is an only child  
+O(x) := ∃z(zPx ∧ ∀w(zPw → w=y) )
+
+(e)  T(x) that says that x has exactly two brothers 
+T(x) := ∃y,z (B(y,x) &  B(z,x) &  z≠y ∀w(B(w,x) → (w=y V w=z)  )   )
   ```
 
 4. Let V be a vocabulary of the attribute (concept) language with complements (ALC) consisting of a role name "parent_of" and a concept name "Male". Interpret parent_of as "x is a parent of y" and M as "x is male". Where possible define the following formulas in this vocabulary; where not possible, explain why: 
@@ -42,7 +60,9 @@ Note: The standard interpretation of the logical symbols - "∨", "∧", "→", 
   (b)  A that says that x is an aunt of y
   (c)  C that says that x and y are cousins
   (d)  O that says that x is an only child  
-  (e)  T that says that x has exactly two brothers 
+  (e)  T that says that x has exactly two brothers
+
+
   ```
 
 
